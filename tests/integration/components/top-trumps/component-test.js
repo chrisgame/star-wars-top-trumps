@@ -10,13 +10,13 @@ module('Integration | Component | top-trumps', function(hooks) {
     this.twoCardDeck = [
       {
         "name": "Luke Skywalker",
-          "height": "172",
-          "mass": "77"
+        "height": "172",
+        "mass": "77"
       },
       {
         "name": "Captain Phasma",
-          "height": "199",
-          "mass": "70",
+        "height": "199",
+        "mass": "70",
       }
     ];
   }),
