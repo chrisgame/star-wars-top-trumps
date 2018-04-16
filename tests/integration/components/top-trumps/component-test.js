@@ -65,8 +65,8 @@ module('Integration | Component | top-trumps', function(hooks) {
       assert.dom('#userCard').exists();
       assert.dom('#computerCard').exists();
 
-      assert.dom('#userWins').hasText('1');
-      assert.dom('#computerWins').hasText('0');
+      assert.dom('#userWins').hasText('User Wins: 1');
+      assert.dom('#computerWins').hasText('Computer Wins: 0');
     });
 
     test('when a winner is chosen the game continues if players have any cards remaining in their hand', async function(assert) {
@@ -77,6 +77,7 @@ module('Integration | Component | top-trumps', function(hooks) {
 
       assert.dom('#turns').hasText('0 turns remaining');
       assert.dom('#gameOverText').hasText('Game Over');
+      assert.dom('#nextRound').doesNotExist();
     });
   });
 
@@ -141,12 +142,12 @@ module('Integration | Component | top-trumps', function(hooks) {
       await render(hbs`{{top-trumps hands=hands}}`);
 
       await click('#start');
-
+      assert.dom('#turns').hasText('2 turns remaining');
       assert.dom('#nextRound').doesNotExist();
 
       await click('#userCard .mass');
-
       await click('#nextRound');
+      assert.dom('#turns').hasText('1 turn remaining');
 
       assert.dom('#userCard').doesNotExist();
       assert.dom('#computerCard').exists();
@@ -154,8 +155,11 @@ module('Integration | Component | top-trumps', function(hooks) {
       await click('#revealUserCard');
       assert.dom('#userCard').exists();
       assert.dom('#computerCard').exists();
-      assert.dom('#userWins').hasText('0');
-      assert.dom('#computerWins').hasText('2');
+      assert.dom('#userWins').hasText('User Wins: 0');
+      assert.dom('#computerWins').hasText('Computer Wins: 2');
+
+      await click('#nextRound');
+      assert.dom('#turns').hasText('0 turns remaining');
     });
   });
 });

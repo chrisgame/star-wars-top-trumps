@@ -5,23 +5,26 @@
   {{/if}}
   {{#if userCardRevealed}}
     <div id="userCard">
-      <span class="height" onclick={{action 'attributeSelected' 'height'}}>{{userCard.height}}</span>
-      <span class="mass" onclick={{action 'attributeSelected' 'mass'}}>{{userCard.mass}}</span>
+      <span>Name: {{userCard.name}}</span>
+      <span class="height" onclick={{action 'attributeSelected' 'height'}}>Height: {{userCard.height}}</span>
+      <span class="mass" onclick={{action 'attributeSelected' 'mass'}}>Mass: {{userCard.mass}}</span>
     </div>
   {{/if}}
-  <div id="userWins">{{userWins}}</div>
+  <div id="userWins">User Wins: {{userWins}}</div>
   {{#if computerCardRevealed}}
     <div id="computerCard">
-      <span class="height">{{computerCard.height}}</span>
-      <span class="mass">{{computerCard.mass}}</span>
+      <span>Name: {{computerCard.name}}</span>
+      <span class="height">Height: {{computerCard.height}}</span>
+      <span class="mass">Mass: {{computerCard.mass}}</span>
     </div>
   {{/if}}
-  <div id="computerWins">{{computerWins}}</div>
+  <div id="computerWins">Computer Wins: {{computerWins}}</div>
   {{#if (and userCardRevealed computerCardRevealed)}}
-    <button id="nextRound" onclick={{action 'nextRound'}}>Next Round</button>
-  {{/if}}
-  {{#if (and userCardRevealed computerCardRevealed (eq turns 0))}}
-    <div id="gameOverText">Game Over</div>
+    {{#if (eq turns 0)}}
+      <div id="gameOverText">Game Over</div>
+    {{else}}
+      <button id="nextRound" onclick={{action 'nextRound'}}>Next Round</button>
+    {{/if}}
   {{/if}}
 {{else}}
   <button id="start" onclick={{action 'startGame'}}>

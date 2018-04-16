@@ -78,11 +78,12 @@ export default Component.extend({
 
     nextRound() {
       let hands = this.get('hands');
+      let newHands = [];
 
-      hands[0].slice(1);
-      hands[1].slice(1);
+      newHands[0] = hands[0].slice(1);
+      newHands[1] = hands[1].slice(1);
 
-      this.set('hands', hands);
+      this.set('hands', newHands);
 
       this.set('userCardRevealed', false);
       this.set('computerCardRevealed', false);
