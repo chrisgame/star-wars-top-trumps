@@ -20,7 +20,7 @@ module('Unit | Service | dealer', function(hooks) {
       {
         "name": "Captain Phasma",
         "height": "199",
-        "mass": "70",
+        "mass": "70"
       }
     ];
 
