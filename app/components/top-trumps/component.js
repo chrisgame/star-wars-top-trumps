@@ -9,6 +9,7 @@ export default Component.extend({
   started: false,
   userCardRevealed: false,
   computerCardRevealed: false,
+  computerAttributeChoice: null,
   userWins: null,
   computerWins: null,
   lastWinner: null,
@@ -19,6 +20,7 @@ export default Component.extend({
     if (!this.get('hands')) {
       this.set('hands', [[], []]);
     }
+    this.set('computerAttributeChoice', 'mass');
     this.set('userWins', 0);
     this.set('computerWins', 0);
     this.set('lastWinner', 'user');
@@ -65,22 +67,13 @@ export default Component.extend({
     },
 
     attributeSelected(selectedAttribute) {
-      let userCard = this.get('userCard');
-      let computerCard = this.get('computerCard');
-      let computerAttr = parseInt(computerCard[selectedAttribute]);
-      let userAttr = parseInt(userCard[selectedAttribute]);
-      let computerWins = this.get('computerWins');
-      let userWins = this.get('userWins');
-
       this.set('computerCardRevealed', true);
+      this._chooseWinner(selectedAttribute);
+    },
 
-      if (computerAttr >= userAttr) {
-        this.set('computerWins', computerWins+1);
-        this.set('lastWinner', 'computer');
-      } else {
-        this.set('userWins', userWins+1);
-        this.set('lastWinner', 'user');
-      }
+    revealUserCard() {
+      this.set('userCardRevealed', true);
+      this._chooseWinner(this.get('computerAttributeChoice'));
     },
 
     nextRound() {
@@ -95,6 +88,25 @@ export default Component.extend({
       this.set('computerCardRevealed', false);
 
       this.send('startGame');
+    }
+  },
+
+  _chooseWinner(selectedAttribute) {
+    let userCard = this.get('userCard');
+    let computerCard = this.get('computerCard');
+    let computerAttr = parseInt(computerCard[selectedAttribute]);
+    let userAttr = parseInt(userCard[selectedAttribute]);
+    let computerWins = this.get('computerWins');
+    let userWins = this.get('userWins');
+
+    this.set('computerCardRevealed', true);
+
+    if (computerAttr >= userAttr) {
+      this.set('computerWins', computerWins+1);
+      this.set('lastWinner', 'computer');
+    } else {
+      this.set('userWins', userWins+1);
+      this.set('lastWinner', 'user');
     }
   }
 });

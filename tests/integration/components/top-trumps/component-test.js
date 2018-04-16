@@ -131,6 +131,26 @@ module('Integration | Component | top-trumps', function(hooks) {
       assert.dom('#userCard').doesNotExist();
       assert.dom('#computerCard').exists();
     });
-    skip('when an attribute has been selected by the computer the user plays thier next card and the winner is chosen', async function() {});
+
+    test('when an attribute has been selected by the computer the user plays their next card and the winner is chosen', async function(assert) {
+      await render(hbs`{{top-trumps hands=hands}}`);
+
+      await click('#start');
+
+      assert.dom('#nextRound').doesNotExist();
+
+      await click('#userCard .mass');
+
+      await click('#nextRound');
+
+      assert.dom('#userCard').doesNotExist();
+      assert.dom('#computerCard').exists();
+
+      await click('#revealUserCard');
+      assert.dom('#userCard').exists();
+      assert.dom('#computerCard').exists();
+      assert.dom('#userWins').hasText('0');
+      assert.dom('#computerWins').hasText('2');
+    });
   });
 });

@@ -1,5 +1,8 @@
 {{#if started}}
   <div id="turns">{{turnsText}}</div>
+  {{#if  (not userCardRevealed)}}
+    <button id="revealUserCard" onclick={{action 'revealUserCard'}}>Reveal Next Card</button>
+  {{/if}}
   {{#if userCardRevealed}}
     <div id="userCard">
       <span class="height" onclick={{action 'attributeSelected' 'height'}}>{{userCard.height}}</span>
