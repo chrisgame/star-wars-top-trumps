@@ -14,10 +14,14 @@
     </div>
   {{/if}}
   <div id="computerWins">{{computerWins}}</div>
+  {{#if (and userCardRevealed computerCardRevealed)}}
+    <button id="nextRound" onclick={{action 'nextRound'}}>Next Round</button>
+  {{/if}}
+{{else}}
+  <button id="start" onclick={{action 'startGame'}}>
+    Start
+  </button>
 {{/if}}
 
-<button id="start" onclick={{action 'startGame'}}>
-  Start
-</button>
 
 {{yield}}

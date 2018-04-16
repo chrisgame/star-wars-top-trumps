@@ -49,7 +49,58 @@ module('Integration | Component | top-trumps', function(hooks) {
     assert.dom('#computerCard').doesNotExist();
   });
 
-  //skip('when the deck is delt and there is a previous winner the previous winner must choose the attribute to be used', async function() {});
+  test('when the deck is delt and there is a previous winner the previous winner must choose the attribute to be used', async function(assert) {
+    let hands = [
+      [
+        {
+          "name": "Luke Skywalker",
+          "height": "172",
+          "mass": "77"
+        },
+        {
+          "name": "C3-PO",
+          "height": "167",
+          "mass": "75"
+        },
+        {
+          "name": "R2-D2",
+          "height": "96",
+          "mass": "32"
+        },
+      ],
+      [
+        {
+          "name": "Darth Vader",
+          "height": "202",
+          "mass": "136"
+        },
+        {
+          "name": "Obi-Wan Kenobi",
+          "height": "182",
+          "mass": "77"
+        },
+        {
+          "name": "Captain Phasma",
+          "height": "199",
+          "mass": "70",
+        }
+      ]
+    ];
+
+    this.set('hands', hands);
+    await render(hbs`{{top-trumps hands=hands}}`);
+
+    await click('#start');
+
+    assert.dom('#nextRound').doesNotExist();
+
+    await click('#userCard .mass');
+
+    await click('#nextRound');
+
+    assert.dom('#userCard').doesNotExist();
+    assert.dom('#computerCard').exists();
+  });
 
   test('when an attribute has been selected by the user the computer plays their card and and the winner is chosen', async function(assert) {
     this.set('hands', this.twoPlayerHands);

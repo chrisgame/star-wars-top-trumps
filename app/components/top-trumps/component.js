@@ -59,8 +59,11 @@ export default Component.extend({
       this.set('started', true);
       if (lastWinner === 'user') {
         this.set('userCardRevealed', true);
+      } else if (lastWinner === 'computer') {
+        this.set('computerCardRevealed', true);
       }
     },
+
     attributeSelected(selectedAttribute) {
       let userCard = this.get('userCard');
       let computerCard = this.get('computerCard');
@@ -73,9 +76,25 @@ export default Component.extend({
 
       if (computerAttr >= userAttr) {
         this.set('computerWins', computerWins+1);
+        this.set('lastWinner', 'computer');
       } else {
         this.set('userWins', userWins+1);
+        this.set('lastWinner', 'user');
       }
+    },
+
+    nextRound() {
+      let hands = this.get('hands');
+
+      hands[0].slice(1);
+      hands[1].slice(1);
+
+      this.set('hands', hands);
+
+      this.set('userCardRevealed', false);
+      this.set('computerCardRevealed', false);
+
+      this.send('startGame');
     }
   }
 });
