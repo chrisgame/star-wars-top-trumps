@@ -18,20 +18,22 @@ module('Unit | Service | swapi', function(hooks) {
     this.server.shutdown();
   });
 
-  test('when source text is json objects separated by new lines', function(assert) {
+  test('when the response is returned successfully', function(assert) {
     server.get(ENV.swapiURL, () => {
-      return [
-        {
-          "name": "Darth Vader",
-          "height": "202",
-          "mass": "136"
-        },
-        {
-          "name": "Luke Skywalker",
-          "height": "172",
-          "mass": "77"
-        }
-      ];
+      return {
+        results: [
+          {
+            "name": "Darth Vader",
+            "height": "202",
+            "mass": "136"
+          },
+          {
+            "name": "Luke Skywalker",
+            "height": "172",
+            "mass": "77"
+          }
+        ]
+      };
     });
 
     swapi.fetchAll()

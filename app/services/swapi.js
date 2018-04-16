@@ -12,9 +12,9 @@ export default Service.extend({
       .then(response => {
         if (response.ok) {
           return response.text()
-            .then(text => {
+            .then(response => {
               try {
-                return JSON.parse(text);
+                return JSON.parse(response).results;
               }
               catch(error) {
                 throw new Error(

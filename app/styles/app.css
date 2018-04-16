@@ -1,0 +1,16 @@
+.flash-message.alert {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+
+.flash-message.alert div {
+  padding: 18px;
+  border-radius: 19px;
+  max-width: 470px;
+  background-color: #E86048;
+  color: #FFF;
+}
