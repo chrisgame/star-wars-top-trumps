@@ -78,10 +78,6 @@ module('Integration | Component | top-trumps', function(hooks) {
       assert.dom('#turns').hasText('0 turns remaining');
       assert.dom('#gameOverText').hasText('Game Over');
     });
-
-    skip('the game ends when players have used all their cards', async function() {});
-
-    skip('only valid attributes can be selected', async function() {});
   });
 
   module('computer chooses attributes', function(hooks) {
