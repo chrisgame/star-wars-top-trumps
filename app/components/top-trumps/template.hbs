@@ -1,5 +1,19 @@
 {{#if started}}
   <div id="turns">{{turnsText}}</div>
+  {{#if userCardRevealed}}
+    <div id="userCard">
+      <span class="height" onclick={{action 'attributeSelected' 'height'}}>{{userCard.height}}</span>
+      <span class="mass" onclick={{action 'attributeSelected' 'mass'}}>{{userCard.mass}}</span>
+    </div>
+  {{/if}}
+  <div id="userWins">{{userWins}}</div>
+  {{#if computerCardRevealed}}
+    <div id="computerCard">
+      <span class="height">{{computerCard.height}}</span>
+      <span class="mass">{{computerCard.mass}}</span>
+    </div>
+  {{/if}}
+  <div id="computerWins">{{computerWins}}</div>
 {{/if}}
 
 <button id="start" onclick={{action 'startGame'}}>

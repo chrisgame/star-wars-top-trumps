@@ -37,7 +37,28 @@ module('Integration | Component | top-trumps', function(hooks) {
   });
   skip('when the deck is delt and there is no previous winner the user must choose the attribute to be used', async function() {});
   skip('when the deck is delt and there is a previous winner the previous winner must choose the attribute to be used', async function() {});
-  skip('when an attribute has been selected by the user the computer plays their card and and the winner is chosen', async function() {});
+
+  test('when an attribute has been selected by the user the computer plays their card and and the winner is chosen', async function(assert) {
+    this.set('hands', this.twoPlayerHands);
+    await render(hbs`{{top-trumps hands=hands}}`);
+
+    assert.dom('#userCard').doesNotExist();
+    assert.dom('#computerCard').doesNotExist();
+
+    await click('#start');
+
+    assert.dom('#userCard').exists();
+    assert.dom('#computerCard').doesNotExist();
+
+    await click('#userCard .mass');
+
+    assert.dom('#userCard').exists();
+    assert.dom('#computerCard').exists();
+
+    assert.dom('#userWins').hasText('1');
+    assert.dom('#computerWins').hasText('0');
+  });
+
   skip('when an attribute has been selected by the computer the user plays thier next card and the winner is chosen', async function() {});
   skip('when both cards are drawn the winner is chosen', async function() {});
   skip('when a winner is chosen the game continues if players have any cards remaining in their hand', async function() {});
