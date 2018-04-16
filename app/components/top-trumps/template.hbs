@@ -1,1 +1,9 @@
+{{#if started}}
+  <div id="turns">{{turnsText}}</div>
+{{/if}}
+
+<button id="start" onclick={{action 'startGame'}}>
+  Start
+</button>
+
 {{yield}}
