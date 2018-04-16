@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'star-wars-top-trumps',
     environment,
     rootURL: '/',
+    swapiURL: 'https://swapi.co/api/people',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
