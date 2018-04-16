@@ -10,16 +10,16 @@ module('Integration | Component | top-trumps', function(hooks) {
     this.twoPlayerHands = [
       [
         {
-          "name": "Luke Skywalker",
-          "height": "172",
-          "mass": "77"
+          "name": "Darth Vader",
+          "height": "202",
+          "mass": "136"
         }
       ],
       [
         {
-          "name": "Captain Phasma",
-          "height": "199",
-          "mass": "70",
+          "name": "Luke Skywalker",
+          "height": "172",
+          "mass": "77"
         }
       ]
     ]
