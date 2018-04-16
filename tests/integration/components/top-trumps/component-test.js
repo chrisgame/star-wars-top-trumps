@@ -35,8 +35,21 @@ module('Integration | Component | top-trumps', function(hooks) {
 
     assert.dom('#turns').hasText('1 turn remaining');
   });
-  skip('when the deck is delt and there is no previous winner the user must choose the attribute to be used', async function() {});
-  skip('when the deck is delt and there is a previous winner the previous winner must choose the attribute to be used', async function() {});
+
+  test('when the deck is delt and there is no previous winner the user must choose the attribute to be used', async function(assert) {
+    this.set('hands', this.twoPlayerHands);
+    await render(hbs`{{top-trumps hands=hands}}`);
+
+    assert.dom('#userCard').doesNotExist();
+    assert.dom('#computerCard').doesNotExist();
+
+    await click('#start');
+
+    assert.dom('#userCard').exists();
+    assert.dom('#computerCard').doesNotExist();
+  });
+
+  //skip('when the deck is delt and there is a previous winner the previous winner must choose the attribute to be used', async function() {});
 
   test('when an attribute has been selected by the user the computer plays their card and and the winner is chosen', async function(assert) {
     this.set('hands', this.twoPlayerHands);
