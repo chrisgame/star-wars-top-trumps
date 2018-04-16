@@ -7,23 +7,27 @@ module('Integration | Component | top-trumps', function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function() {
-    this.twoCardDeck = [
-      {
-        "name": "Luke Skywalker",
-        "height": "172",
-        "mass": "77"
-      },
-      {
-        "name": "Captain Phasma",
-        "height": "199",
-        "mass": "70",
-      }
-    ];
+    this.twoPlayerHands = [
+      [
+        {
+          "name": "Luke Skywalker",
+          "height": "172",
+          "mass": "77"
+        }
+      ],
+      [
+        {
+          "name": "Captain Phasma",
+          "height": "199",
+          "mass": "70",
+        }
+      ]
+    ]
   }),
 
   test('when a game is started the deck is delt evenly between the players', async function(assert) {
-    this.set('deck', this.twoCardDeck);
-    await render(hbs`{{top-trumps deck=deck}}`);
+    this.set('hands', this.twoPlayerHands);
+    await render(hbs`{{top-trumps hands=hands}}`);
 
     assert.dom('#turns').doesNotExist();
 
