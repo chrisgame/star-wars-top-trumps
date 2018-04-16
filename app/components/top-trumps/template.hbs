@@ -20,6 +20,9 @@
   {{#if (and userCardRevealed computerCardRevealed)}}
     <button id="nextRound" onclick={{action 'nextRound'}}>Next Round</button>
   {{/if}}
+  {{#if (and userCardRevealed computerCardRevealed (eq turns 0))}}
+    <div id="gameOverText">Game Over</div>
+  {{/if}}
 {{else}}
   <button id="start" onclick={{action 'startGame'}}>
     Start

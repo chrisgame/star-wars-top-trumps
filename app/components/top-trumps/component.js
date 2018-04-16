@@ -29,7 +29,7 @@ export default Component.extend({
   turns: computed('hands', function() {
     let hands = this.get('hands');
 
-    return hands[0].length;
+    return hands[0].length -1;
   }),
 
   turnsText: computed('turns', function() {
@@ -38,7 +38,7 @@ export default Component.extend({
     if (turns === 1) {
       return "1 turn remaining";
     } else {
-      return `${turns} remaining`;
+      return `${turns} turns remaining`;
     }
   }),
 

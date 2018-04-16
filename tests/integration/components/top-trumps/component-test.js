@@ -34,7 +34,7 @@ module('Integration | Component | top-trumps', function(hooks) {
 
       await click('#start');
 
-      assert.dom('#turns').hasText('1 turn remaining');
+      assert.dom('#turns').hasText('0 turns remaining');
     });
 
     test('when the deck is delt and there is no previous winner the user must choose the attribute to be used', async function(assert) {
@@ -69,7 +69,16 @@ module('Integration | Component | top-trumps', function(hooks) {
       assert.dom('#computerWins').hasText('0');
     });
 
-    skip('when a winner is chosen the game continues if players have any cards remaining in their hand', async function() {});
+    test('when a winner is chosen the game continues if players have any cards remaining in their hand', async function(assert) {
+      await render(hbs`{{top-trumps hands=hands}}`);
+
+      await click('#start');
+      await click('#userCard .mass');
+
+      assert.dom('#turns').hasText('0 turns remaining');
+      assert.dom('#gameOverText').hasText('Game Over');
+    });
+
     skip('the game ends when players have used all their cards', async function() {});
 
     skip('only valid attributes can be selected', async function() {});
