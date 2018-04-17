@@ -49,6 +49,21 @@ module('Integration | Component | top-trumps', function(hooks) {
       assert.dom('#computerCard').doesNotExist();
     });
 
+    test('when both cards are shown the attributes on the users card should not be clickable', async function(assert) {
+      await render(hbs`{{top-trumps hands=hands}}`);
+
+      await click('#start');
+      await click('#userCard .mass');
+      assert.dom('#userCard').exists();
+      assert.dom('#computerCard').exists();
+      assert.dom('#userWins').hasText('User Wins: 1');
+      assert.dom('#computerWins').hasText('Computer Wins: 0');
+
+      await click('#userCard .mass');
+      assert.dom('#userWins').hasText('User Wins: 1');
+      assert.dom('#computerWins').hasText('Computer Wins: 0');
+    });
+
     test('when an attribute has been selected by the user the computer plays their card and and the winner is chosen', async function(assert) {
       await render(hbs`{{top-trumps hands=hands}}`);
 

@@ -67,8 +67,12 @@ export default Component.extend({
     },
 
     attributeSelected(selectedAttribute) {
-      this.set('computerCardRevealed', true);
-      this._chooseWinner(selectedAttribute);
+      let computerCardRevealed = this.get('computerCardRevealed');
+
+      if (!computerCardRevealed) {
+        this.set('computerCardRevealed', true);
+        this._chooseWinner(selectedAttribute);
+      }
     },
 
     revealUserCard() {
