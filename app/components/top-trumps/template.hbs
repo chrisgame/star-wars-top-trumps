@@ -1,36 +1,45 @@
 {{#if started}}
-  <div id="turns">{{turnsText}}</div>
-  {{#if  (not userCardRevealed)}}
-    <button id="revealUserCard" onclick={{action 'revealUserCard'}}>Reveal Next Card</button>
-  {{/if}}
-  {{#if userCardRevealed}}
-    <div id="userCard">
-      <span>Name: {{userCard.name}}</span>
-      <span class="height" onclick={{action 'attributeSelected' 'height'}}>Height: {{userCard.height}}</span>
-      <span class="mass" onclick={{action 'attributeSelected' 'mass'}}>Mass: {{userCard.mass}}</span>
+  <div id="turns" local-class="turns-text">{{turnsText}}</div>
+  <div local-class="cards">
+    <div local-class="card">
+      {{#if  (not userCardRevealed)}}
+        <button id="revealUserCard" onclick={{action 'revealUserCard'}}>Reveal Next Card</button>
+      {{/if}}
+      {{#if userCardRevealed}}
+        <div id="userCard">
+          <div class="name">Name: {{userCard.name}}</div>
+          <div class="height" onclick={{action 'attributeSelected' 'height'}}>Height: {{userCard.height}}</div>
+          <div class="mass" onclick={{action 'attributeSelected' 'mass'}}>Mass: {{userCard.mass}}</div>
+        </div>
+      {{/if}}
     </div>
-  {{/if}}
-  <div id="userWins">User Wins: {{userWins}}</div>
-  {{#if computerCardRevealed}}
-    <div id="computerCard">
-      <span>Name: {{computerCard.name}}</span>
-      <span class="height">Height: {{computerCard.height}}</span>
-      <span class="mass">Mass: {{computerCard.mass}}</span>
+    <div local-class="card">
+      {{#if computerCardRevealed}}
+        <div id="computerCard">
+          <div class="name">Name: {{computerCard.name}}</div>
+          <div class="height">Height: {{computerCard.height}}</div>
+          <div class="mass">Mass: {{computerCard.mass}}</div>
+        </div>
+      {{/if}}
     </div>
-  {{/if}}
-  <div id="computerWins">Computer Wins: {{computerWins}}</div>
+  </div>
+  <div local-class="wins">
+    <div id="userWins" local-class="win">User Wins: {{userWins}}</div>
+    <div id="computerWins" local-class="win">Computer Wins: {{computerWins}}</div>
+  </div>
   {{#if (and userCardRevealed computerCardRevealed)}}
     {{#if (eq turns 0)}}
-      <div id="gameOverText">Game Over</div>
+      <div id="gameOverText" local-class="game-over-text">Game Over</div>
     {{else}}
-      <button id="nextRound" onclick={{action 'nextRound'}}>Next Round</button>
+      <div local-class="button-container">
+        <button id="nextRound" onclick={{action 'nextRound'}}>Next Round</button>
+      </div>
     {{/if}}
   {{/if}}
 {{else}}
-  <button id="start" onclick={{action 'startGame'}}>
-    Start
-  </button>
+  <div local-class="button-container">
+    <button id="start" onclick={{action 'startGame'}}>
+      Start
+    </button>
+  </div>
 {{/if}}
-
-
-{{yield}}

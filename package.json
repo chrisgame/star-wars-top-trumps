@@ -33,6 +33,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
+    "ember-css-modules": "^0.7.10",
     "ember-data": "~3.1.0-beta.1",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^3.4.5",

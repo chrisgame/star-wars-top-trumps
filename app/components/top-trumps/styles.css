@@ -1,0 +1,61 @@
+.turns-text {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.card {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 400px;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.name,
+.height,
+.mass {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.wins {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.win {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  width: 400px;
+  margin: 10px;
+}
+
+.game-over-text {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
